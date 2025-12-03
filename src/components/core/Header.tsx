@@ -3,7 +3,10 @@
 import Image from "next/image"
 import Settings from "@/components/core/Settings"
 
-export default function Header() {
+export default function Header({ sede, setSede }: {
+    sede: string;
+    setSede: (name: string) => void;
+}) {
     return (
         <header className={'w-screen h-20 border-b-[1.5px] flex-row flex border-b-gray-200 justify-between items-center'}>
             <div className={'ml-7'}>
@@ -16,8 +19,10 @@ export default function Header() {
                 />
             </div>
 
+            <h1 className={'font-semibold text-xl'}>{sede}</h1>
+
             <div className={'mr-7'}>
-                <Settings />
+                <Settings sede={sede} setSede={setSede} />
             </div>
         </header>
     )

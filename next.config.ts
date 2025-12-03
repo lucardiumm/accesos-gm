@@ -5,6 +5,12 @@ const nextConfig: NextConfig = {
         remotePatterns: [
             {
                 hostname: 'encrypted-tbn0.gstatic.com',
+            },
+            {
+                hostname: 'cdn.pixabay.com',
+            },
+            {
+                hostname: 'mega-ac.azurewebsites.net',
             }
         ]
     }
