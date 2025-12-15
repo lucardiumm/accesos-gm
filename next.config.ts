@@ -11,7 +11,10 @@ const nextConfig: NextConfig = {
             },
             {
                 hostname: 'mega-ac.azurewebsites.net',
-            }
+            }, 
+            {
+                hostname: 'play-lh.googleusercontent.com',
+            },
         ]
     }
 };

@@ -15,9 +15,11 @@ import { Button } from "@/components/ui/button"
 import { SettingsIcon } from "lucide-react"
 import { config } from "@/constants/config"
 import { useSede } from "@/hooks/useSede"
+import { redirect } from "next/navigation"
+import { getSedeId } from '@/functions/getSedeById'
 
 export default function Settings() {
-    const { localSede, changeSede } = useSede()
+    const { sede, empresa, changeSede } = useSede()
 
     return (
         <DropdownMenu>
@@ -26,7 +28,7 @@ export default function Settings() {
                     <SettingsIcon />
                 </Button>
             </DropdownMenuTrigger>
-            <DropdownMenuContent className={'w-32 mr-7'} align={'start'}>
+            <DropdownMenuContent className={'px-7 mr-7 mt-5'} align={'start'}>
                 <DropdownMenuLabel>Mi cuenta</DropdownMenuLabel>
                 <DropdownMenuGroup>
                     <DropdownMenuItem>
@@ -38,18 +40,26 @@ export default function Settings() {
                 </DropdownMenuGroup>
                  <DropdownMenuLabel>Megatlon</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuRadioGroup value={localSede} onValueChange={changeSede}>
+                <DropdownMenuRadioGroup value={`${sede}-megatlon`} onValueChange={(value) => {
+                    const [name, empresa] = value.split('-')
+                    changeSede(name, empresa)
+                    redirect(`/${empresa}/${getSedeId({ name, empresa })}`)
+                }}>
                     {config.sedes.megatlon.sort((a, b) => a.name.localeCompare(b.name)).map((sede, i) => (
-                        <DropdownMenuRadioItem value={sede.name} key={i}>
+                        <DropdownMenuRadioItem value={`${sede.name}-megatlon`} key={i}>
                             {sede.name}
                         </DropdownMenuRadioItem>
                     ))}
                 </DropdownMenuRadioGroup>
                 <DropdownMenuLabel>Fiter</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuRadioGroup value={localSede} onValueChange={changeSede}>
+                <DropdownMenuRadioGroup value={`${sede}-fiter`} onValueChange={(value) => {
+                    const [name, empresa] = value.split('-')
+                    changeSede(name, empresa)
+                    redirect(`/${empresa}/${getSedeId({ name, empresa })}`)
+                }}>
                     {config.sedes.fiter.sort((a, b) => a.name.localeCompare(b.name)).map((sede, i) => (
-                        <DropdownMenuRadioItem value={sede.name} key={i}>
+                        <DropdownMenuRadioItem value={`${sede.name}-fiter`} key={i}>
                             {sede.name}
                         </DropdownMenuRadioItem>
                     ))}

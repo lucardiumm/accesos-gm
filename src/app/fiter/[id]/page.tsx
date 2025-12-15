@@ -1,6 +1,7 @@
 'use client'
 
-import { useParams } from "next/navigation"
+import Header from '@/components/core/Header'
+import { useParams } from 'next/navigation'
 
 export default function Page() {
     const params = useParams()
@@ -8,7 +9,11 @@ export default function Page() {
 
     return (
         <>
-            {id}
+            <Header />
+
+            <div className={'flex flex-1 flex-col items-center justify-center w-screen h-screen bg-gray-100'}>
+                <p>{id}</p>
+            </div>
         </>
     )
 }

@@ -18,6 +18,8 @@ import { useLister } from "@/hooks/useLister"
 import { Socio } from "@/types/include"
 import { Search } from "lucide-react"
 import { useState } from "react"
+import { redirect } from "next/navigation"
+import { isMobile } from "react-device-detect"
 
 export function Modal() {
     const { add } = useLister()
@@ -43,6 +45,10 @@ export function Modal() {
         setExists(false)
 
         return false
+    }
+
+    const scanQR = () => {
+        redirect('/scan')
     }
 
     return (
@@ -77,6 +83,11 @@ export function Modal() {
                     }}>
                         Abrir
                     </Button>
+                    {isMobile && (
+                        <Button variant="outline" onClick={scanQR}>
+                            Escanear QR
+                        </Button>
+                    )}
                     <DialogClose asChild>
                         <Button type="button" variant="secondary">
                             Close

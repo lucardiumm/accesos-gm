@@ -1,0 +1,2 @@
+[] - Escaneo de forma masiva
+[] - Guardar ultimos 20 accesos dentro de la BDI
